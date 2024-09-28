@@ -1,4 +1,4 @@
-from contacts import agenda
+from contacts import contacts
 
 class Persona:
 
@@ -8,16 +8,18 @@ class Persona:
 
     def add_contact(self,name,number):
         
-        agenda[name] = number
+        contacts[name] = number
 
-        print(agenda)
+        print(contacts)
 
         return True
 
     def delete_contact(self,name):
 
-        agenda[self.name].pop(name)
+        contacts.pop(name)
 
     def edit_contact(self,name,number):
 
-        agenda[self.name][name] = number
+        contacts[name] = number
+
+        return True

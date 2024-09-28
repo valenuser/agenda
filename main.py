@@ -1,5 +1,5 @@
 from persona import Persona
-from functions import add_contact
+from functions import add_contact,edit_contact
 
 user =  Persona('Valentin',123456789)
 
@@ -12,7 +12,7 @@ while True:
             if ask == 1:
                 print(add_contact(user))
             elif ask == 2:
-                print(add_contact(user))
+                print(edit_contact(user))
             elif ask == 3:
                 print(add_contact(user))
             elif ask == 4:

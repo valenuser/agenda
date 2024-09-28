@@ -1,7 +1,22 @@
 from persona import Persona
-from contacts import contacts
-from verifications import verify_contact
+from contacts import contacts, phones
+from verifications import verify_contact,verify_number
 
+
+
+def change_phone(old_number, new_number):
+
+    try:
+
+        index_old_number = phones.index(old_number)
+
+        phones[index_old_number] = new_number
+
+        return True
+    
+    except Exception as e:
+
+        return False
 
 
 def add_contact(user):
@@ -15,12 +30,12 @@ def add_contact(user):
                 print("The name already exists.")
 
             else:
+                    break
 
-                break
 
         else:
 
-            print("Contact names cannot have spaces")
+            print("Contact names cannot have spaces.")
 
     while True:
 
@@ -28,16 +43,23 @@ def add_contact(user):
 
             number_contact = int(input("New contact's number: "))
 
-            if name_contact > 9 or number_contact < 9:
+            if len(str(number_contact)) != 9:
 
-                print("Contact number must be a number with 9 caracters.")
+                print("Contact number must be 9 caracters long.")
 
-            break
+            elif verify_number(number_contact) == None:
+                        
+                break
+                    
+            else:
+
+                print("Number already exists.")
 
         except Exception as e:
 
             print("Contact number must be 9 caracters long.")
-
+    
+    phones.append(number_contact)
     response = user.add_contact(name_contact,number_contact)
 
     if response:
@@ -50,4 +72,55 @@ def add_contact(user):
     
 
 
-""" def edit_contact """
+def edit_contact(user):
+    
+        while True:
+
+            edit_name_contact = input("Contact's name: ")
+
+            if verify_contact(edit_name_contact):
+
+                    break
+
+            else:
+
+                print("The contact is not registered.")
+
+
+        while True:
+             
+            try:
+                                
+                edit_number_contact = int(input("New contact's number: "))
+
+                if len(str(edit_number_contact)) != 9:
+
+                    print("Contact number must be 9 caracters long.")
+
+                elif verify_number(edit_number_contact) == None:
+                                        
+                    break
+                                    
+                else:
+
+                    print("Number already exists.")
+                
+            
+            except Exception as e:
+                 
+                print("Contact number must be 9 caracters long.")
+
+
+        old_number = contacts[edit_name_contact]
+        
+        change_phone(old_number,edit_number_contact)
+
+        response = user.edit_contact(edit_name_contact,edit_number_contact)
+
+        if response:
+            
+            return "Contact changed succesfully."
+
+        else:
+            
+            return 'Error changing the contact, try again later.'

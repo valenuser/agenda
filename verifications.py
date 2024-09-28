@@ -1,18 +1,23 @@
-from contacts import contacts
+from contacts import contacts,phones
 
 def verify_contact(name):
 
-    keys = contacts.keys()
-
-    names = []
-
-    for i in keys:
-        names.append(i)
-
-    if name in names:
+    if contacts.get(name) != None:
 
         return True
     
     else:
     
         return False
+
+
+
+def verify_number(number):
+    try:
+        if number in phones:
+            print("a")
+            return False
+    
+    except Exception as e:
+
+        return True
