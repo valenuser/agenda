@@ -15,7 +15,7 @@ def verify_contact(name):
 def verify_number(number):
     try:
         if number in phones:
-            print("a")
+
             return False
     
     except Exception as e:

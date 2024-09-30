@@ -18,6 +18,8 @@ class Persona:
 
         contacts.pop(name)
 
+        return True
+
     def edit_contact(self,name,number):
 
         contacts[name] = number

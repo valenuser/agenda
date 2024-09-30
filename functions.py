@@ -124,3 +124,34 @@ def edit_contact(user):
         else:
             
             return 'Error changing the contact, try again later.'
+        
+
+
+def delete_contact(user):
+        while True:
+
+            delete_name_contact = input("Contact's name: ")
+
+            if verify_contact(delete_name_contact):
+
+                    break
+
+            else:
+
+                print("The contact is not registered.")
+
+        
+        phone = contacts[delete_name_contact]
+
+        phones.remove(phone)
+
+        
+        response = user.delete_contact(delete_name_contact)
+
+        if response:
+        
+             return "The contact has been deleted."
+        
+        else:
+             
+             return "The contact hasn't been deleted, try again later."
